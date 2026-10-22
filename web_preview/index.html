@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelGate Attendance - Web Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1E40AF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --info: #06B6D4;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: var(--bg);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Device Preview */
+        .device-preview {
+            background: var(--bg);
+            padding: 60px 0;
+        }
+
+        .device-preview h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .devices {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .device {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 400px;
+        }
+
+        .device-header {
+            height: 60px;
+            background: #000;
+            border-radius: 15px 15px 0 0;
+            margin: 0 -20px 20px -20px;
+            position: relative;
+        }
+
+        .device-notch {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #000;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .device-screen {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .device-name {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+        }
+
+        .tablet-mockup {
+            width: 400px;
+            height: 500px;
+        }
+
+        .desktop-mockup {
+            width: 600px;
+            height: 400px;
+        }
+
+        /* App Screenshots */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .screenshot {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--bg);
+            padding: 60px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .devices {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .device {
+                max-width: 100%;
+            }
+        }
+
+        /* Mock App UI */
+        .mockup-container {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .mockup-header {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mockup-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .mockup-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mockup-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .mockup-body {
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .mockup-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .mockup-stat:last-child {
+            border-bottom: none;
+        }
+
+        .mockup-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .mockup-stat-value {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .mockup-button {
+            background: var(--primary);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .mockup-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .mockup-button-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-present {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-absent {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-late {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-on-time {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .employee-list {
+            list-style: none;
+        }
+
+        .employee-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .employee-item:last-child {
+            border-bottom: none;
+        }
+
+        .employee-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .employee-info {
+            flex: 1;
+        }
+
+        .employee-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .employee-details {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="travelgate_logo.png" alt="TravelGate Logo" style="height: 50px;">
+                <div style="width: 20px;"></div>
+                <div class="logo-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <div class="logo-text">TravelGate Attendance</div>
+                    <div style="font-size: 12px; opacity: 0.9;">Location-Based Attendance System</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="#preview">Preview</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#setup">Setup</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🎯 Smart Attendance Tracking</h1>
+            <p>Revolutionary location-based attendance system that works on iOS, Android, and Windows. Track employee attendance automatically based on their proximity to your company location.</p>
+            <div class="hero-buttons">
+                <a href="#setup" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Get Started
+                </a>
+                <a href="#preview" class="btn btn-secondary">
+                    <i class="fas fa-eye"></i> Live Preview
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>✨ Powerful Features</h2>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 1.1rem;">Everything you need for modern attendance management</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location-Based Tracking</h3>
+                    <p>Automatically tracks attendance when employees are within 1km radius of your company building. Uses GPS for accurate location detection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Clock In/Out System</h3>
+                    <p>Simple and intuitive clock-in and clock-out functionality with location verification. Supports grace periods for flexibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Comprehensive Reports</h3>
+                    <p>Generate detailed attendance reports (daily, weekly, monthly, yearly). Export to Excel for easy analysis and record-keeping.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Employee Management</h3>
+                    <p>Full employee management system. Add, edit, activate, or deactivate employees. Organize by departments and positions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Cross-Platform Support</h3>
+                    <p>Works seamlessly on iOS, Android, and Windows Desktop. Same great experience on all devices and operating systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Smart Notifications</h3>
+                    <p>Automatic reminders for clock-in/out. Alerts for late arrivals, early departures, and when outside the designated area.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Offline Support</h3>
+                    <p>Full functionality without internet connection. Data syncs automatically when connection is restored.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>All data stored locally on device. Location tracking only when app is in use. Compliant with privacy regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Device Preview Section -->
+    <section class="device-preview" id="preview">
+        <div class="container">
+            <h2>📱 Available on All Platforms</h2>
+            <div class="devices">
+                <div class="device">
+                    <div class="device-header">
+                        <div class="device-notch"></div>
+                    </div>
+                    <div class="device-screen phone-mockup">
+                        <div class="mockup-container">
+                            <div class="mockup-header">
+                                <div class="mockup-title">Employee Dashboard</div>
+                                <div class="mockup-actions">
+                                    <i class="fas fa-refresh mockup-icon"></i>
+                                    <i class="fas fa-bell mockup-icon"></i>
+                                    <i class="fas fa-cog mockup-icon"></i>
+                                </div>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-card">
+                                    <h4 style="margin-bottom: 15px;">Welcome, John!</h4>
+                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px;">Software Engineer - IT Department</p>
+                                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Employee ID: EMP001</p>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4 style="margin-bottom: 15px;">🕐 Clock Status</h4>
+                                    <div style="text-align: center; padding: 20px 0;">
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success); margin-bottom: 10px;">Clocked In</div>
+                                        <div style="color: var(--text-secondary);">Since 8:55 AM</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4 style="margin-bottom: 15px;">📍 Location Status</h4>
+                                    <div style="text-align: center; padding: 20px 0;">
+                                        <div style="font-size: 1.5rem; font-weight: 600; color: var(--success); margin-bottom: 10px;">Within Radius</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Distance: 245 meters</div>
+                                    </div>
+                                </div>
+                                <button class="mockup-button" style="margin-top: 20px;">
+                                    <i class="fas fa-clock"></i> Clock Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device-name">iOS / Android</div>
+                </div>
+                <div class="device">
+                    <div class="device-header">
+                        <div class="device-notch" style="width: 200px;"></div>
+                    </div>
+                    <div class="device-screen desktop-mockup">
+                        <div class="mockup-container">
+                            <div class="mockup-header">
+                                <div class="mockup-title">Admin Dashboard</div>
+                                <div class="mockup-actions">
+                                    <i class="fas fa-refresh mockup-icon"></i>
+                                    <i class="fas fa-bell mockup-icon"></i>
+                                    <i class="fas fa-cog mockup-icon"></i>
+                                </div>
+                            </div>
+                            <div class="mockup-body">
+                                <h4 style="margin-bottom: 20px;">Welcome, Admin!</h4>
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;">
+                                    <div class="mockup-card" style="padding: 15px; text-align: center;">
+                                        <i class="fas fa-users" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 10px;"></i>
+                                        <div style="font-size: 1.5rem; font-weight: 700;">25</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Total Employees</div>
+                                    </div>
+                                    <div class="mockup-card" style="padding: 15px; text-align: center;">
+                                        <i class="fas fa-check-circle" style="font-size: 1.5rem; color: var(--success); margin-bottom: 10px;"></i>
+                                        <div style="font-size: 1.5rem; font-weight: 700;">22</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Present Today</div>
+                                    </div>
+                                    <div class="mockup-card" style="padding: 15px; text-align: center;">
+                                        <i class="fas fa-times-circle" style="font-size: 1.5rem; color: var(--error); margin-bottom: 10px;"></i>
+                                        <div style="font-size: 1.5rem; font-weight: 700;">3</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Absent Today</div>
+                                    </div>
+                                    <div class="mockup-card" style="padding: 15px; text-align: center;">
+                                        <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; color: var(--warning); margin-bottom: 10px;"></i>
+                                        <div style="font-size: 1.5rem; font-weight: 700;">1</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.85rem;">Late Today</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-card">
+                                    <h4 style="margin-bottom: 15px;">Today's Attendance</h4>
+                                    <ul class="employee-list">
+                                        <li class="employee-item">
+                                            <div class="employee-avatar">JD</div>
+                                            <div class="employee-info">
+                                                <div class="employee-name">John Doe</div>
+                                                <div class="employee-details">Software Engineer - IT</div>
+                                            </div>
+                                            <span class="status-badge status-present">Present</span>
+                                        </li>
+                                        <li class="employee-item">
+                                            <div class="employee-avatar">JS</div>
+                                            <div class="employee-info">
+                                                <div class="employee-name">Jane Smith</div>
+                                                <div class="employee-details">HR Manager - HR</div>
+                                            </div>
+                                            <span class="status-badge status-present">Present</span>
+                                        </li>
+                                        <li class="employee-item">
+                                            <div class="employee-avatar">MJ</div>
+                                            <div class="employee-info">
+                                                <div class="employee-name">Michael Johnson</div>
+                                                <div class="employee-details">Operations Manager</div>
+                                            </div>
+                                            <span class="status-badge status-late">Late</span>
+                                        </li>
+                                        <li class="employee-item">
+                                            <div class="employee-avatar">SW</div>
+                                            <div class="employee-info">
+                                                <div class="employee-name">Sarah Williams</div>
+                                                <div class="employee-details">Accountant - Finance</div>
+                                            </div>
+                                            <span class="status-badge status-absent">Absent</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                                    <button class="mockup-button" style="flex: 1;">
+                                        <i class="fas fa-users"></i> Manage Employees
+                                    </button>
+                                    <button class="mockup-button mockup-button-outline" style="flex: 1;">
+                                        <i class="fas fa-chart-bar"></i> View Reports
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device-name">Windows Desktop</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>⚡ How It Works</h2>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 1.1rem;">Simple and intuitive process for everyone</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download & Install</h3>
+                    <p>Install the app on your device from the app store or download the desktop version for Windows.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Login to Your Account</h3>
+                    <p>Sign in with your company credentials. Different roles (Admin, Employee) have different access levels.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Enable Location</h3>
+                    <p>Grant location permissions so the app can detect when you're at work. This is required for clock-in/out.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Clock In/Out</h3>
+                    <p>When you arrive at work, clock in. When you leave, clock out. The app verifies you're within the company radius.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>View Reports</h3>
+                    <p>Admins can view attendance reports, generate Excel files, and monitor all employees in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Section -->
+    <section class="section" id="setup">
+        <div class="container">
+            <div class="section-title">
+                <h2>🚀 Quick Setup Guide</h2>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 1.1rem;">Get started in just a few minutes</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; background: var(--card); padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 20px; color: var(--primary);">Step-by-Step Installation</h3>
+                
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px;">1️⃣ Install Flutter SDK</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Make sure you have Flutter installed on your system.</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--text);">
+                        flutter --version
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px;">2️⃣ Clone the Repository</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Download the project files.</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--text);">
+                        git clone https://github.com/djsalouma/Travelgate-App.git<br>
+                        cd Travelgate-App
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px;">3️⃣ Install Dependencies</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Install all required packages.</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--text);">
+                        flutter pub get
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px;">4️⃣ Generate Type Adapters</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Generate Hive database type adapters.</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--text);">
+                        flutter pub run build_runner build
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px;">5️⃣ Run the App</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Start the app on your preferred platform.</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--text);">
+                        # Android<br>
+                        flutter run -d android<br><br>
+                        # iOS<br>
+                        flutter run -d ios<br><br>
+                        # Windows<br>
+                        flutter run -d windows
+                    </div>
+                </div>
+
+                <div style="background: #d1fae5; padding: 20px; border-radius: 12px; border-left: 4px solid var(--success);">
+                    <h4 style="margin-bottom: 10px; color: #065f46;">💡 Demo Credentials</h4>
+                    <p style="margin-bottom: 10px;"><strong>Admin:</strong> admin@company.com / admin123</p>
+                    <p style="margin-bottom: 0;"><strong>Employee:</strong> employee@company.com / employee123</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Attendance Tracking?</h2>
+            <p>Join thousands of businesses already using TravelGate Attendance to simplify their attendance management, reduce errors, and save time.</p>
+            <div class="hero-buttons">
+                <a href="#setup" class="btn btn-secondary" style="color: var(--primary);">
+                    <i class="fas fa-download"></i> Download Now
+                </a>
+                <a href="#features" class="btn btn-primary">
+                    <i class="fas fa-star"></i> Explore Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <div class="logo-icon" style="background: var(--primary);">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="logo-text" style="color: white; font-size: 1.2rem;">TravelGate Attendance</div>
+                </div>
+                <p style="color: rgba(255,255,255,0.7);">Location-based attendance tracking system for modern businesses.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#preview">Live Preview</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#setup">Setup Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Platforms</h4>
+                <ul>
+                    <li><a href="#">iOS</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Windows</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 TravelGate Attendance. All rights reserved. | v1.0.0</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section, .device, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
