@@ -1,0 +1,85 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom
+.buildlog
+.history
+.svn
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains build configuration for VS Code, and should be
+# excluded from source control.
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/
+**/ios/
+**/android/
+**/build/
+**/windows/
+**/linux/
+**/macos/
+**/web/
+
+# Pub dependencies
+.packages
+.pub-cache/
+.pub/
+
+# Flutter dependencies and configuration
+.pub-deps.json
+pubspec.lock
+
+# Dart native build outputs
+.out/
+
+# Hive database files
+hive/
+
+# IDE specific files
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Firebase configuration
+firebase.json
+.google-services.json
+GoogleService-Info.plist
+
+# Keystore files
+*.keystore
+*.jks
+*.p12
+*.pfx
+
+# Gradle cache
+gradle/
+
+# Node.js (if using for web)
+node_modules/
+npm-debug.log
+
+# Excel export temporary files
+*.xlsx
+*.xls
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+coverage/
